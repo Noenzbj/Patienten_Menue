@@ -1,0 +1,3 @@
+class LunchCard < ApplicationRecord
+
+end
