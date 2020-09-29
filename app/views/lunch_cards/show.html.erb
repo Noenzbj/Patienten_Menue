@@ -3,24 +3,39 @@
     <div class="col-8 mt-4">
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header font-italic">
-          für <%= link_to 'Patient*in', '#' %>
+          <div class="row">
+            <div class="col">
+              <p>Station: <%= @lunch_card.patient.station%></p>
+              <p>Zimmer: <%= @lunch_card.patient.room_nr %></p>
+            </div>
+            <div class="col">
+              für <%= link_to @lunch_card.patient.first_name + " " + @lunch_card.patient.last_name , '#' %>
+            </div>
+            <div class="col">
+              <p>Speisesaal: <%= @lunch_card.patient.dining_room%></p>
+              <p>Tisch-Platz-Nummer: <%= @lunch_card.patient.table_number%></p>
+            </div>
+          </div>
+
+          
+          
         </div>
         <div class="card-body">
           <h5 class="card-title text-black font-weight-bold">Vollkost, Mittag</h5>
           
-          <p class="card-text"><%= "Normale Portion" if @lunch_card.normal_portion == true%></p>
+          <p class="card-text"><%= @lunch_card.portion%></p>
           <p class="card-text"><%= "Tagessuppe" if @lunch_card.day_soup == true%></p>
           <p class="card-text"><%= "Dessert" if @lunch_card.dessert == true%></p>
           <p class="card-text font-weight-bold"><%= "Passierte Kost" if @lunch_card.pureed_food == true%></p>
           <p class="card-text font-weight-bold"><%= "Passiertes Fleisch" if @lunch_card.pureed_meat == true%></p>
           <p class="card-text"><%= "Geschnittenes Fleisch" if @lunch_card.cut_meat == true%></p>
           <p class="card-text"><%= "Kein Schweinefleisch" if @lunch_card.no_pork == true%></p>
-          <p class="card-text"><%= "Vegetarisch" if @lunch_card.vegeterean == true%></p>
+          <p class="card-text"><%= "Vegetarisch" if @lunch_card.vegetarian == true%></p>
           <p class="card-text"><%= "Kein Fisch" if @lunch_card.no_fish == true%></p>
 
           <p class="card-text">Bemerkungen: <%= truncate(@lunch_card.comments, length: 100) %></p>
 
-          <%= link_to "Edit",'#', class: "btn btn-outline-info" %>
+          <%= link_to "Edit",edit_lunch_card_path(@lunch_card), class: "btn btn-outline-info" %>
           <%= link_to "Delete", '#', class: "btn btn-outline-danger", data: {confirm: "Are you sure?"} %>
 
           
