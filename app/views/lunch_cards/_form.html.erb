@@ -7,7 +7,11 @@
       <%= form_with(model: @lunch_card, class: "shadow p-3 mb-3 background rounded", local: true) do |f| %>
       <div class="form-group row justify-content-center">
         <div class="col-10 justify-content-center">
+        <% if params[:patient_id] %>
           <%= f.hidden_field :patient_id, :value => @patient_id.id%>
+        <% else %>
+          <%= f.hidden_field :patient_id, :value => @lunch_card.patient_id%>
+        <% end %>
           <table class="table table-borderless ">
             <tbody>
               <tr>
@@ -19,8 +23,8 @@
                     </label>
                   </div>
                 </td>
-                <td><%= f.check_box :pureed_food, checked: @lunch_card.pureed_food?%> Passierte Kost</td>
-                <td><%= f.check_box :vegetarian, checked: @lunch_card.vegetarian? %> Vegetarisch</td>
+                <td><%= f.check_box :day_soup, checked: @lunch_card.day_soup? %> Tagessuppe</td>
+                <td><%= f.check_box :dessert, checked: @lunch_card.dessert? %> Dessert</td>
               </tr>
               <tr>
                 <td>
@@ -31,17 +35,13 @@
                     </label>
                   </div>
                 </td> 
-                <td><%= f.check_box :pureed_meat, checked: @lunch_card.pureed_meat? %> Passiertes Fleisch</td>
-                <td><%= f.check_box :no_pork, checked: @lunch_card.no_pork? %> Kein Schweinefleisch</td>
               </tr>
               <tr>
-                <td><%= f.check_box :dessert, checked: @lunch_card.dessert? %> Dessert</td>
-                <td><%= f.check_box :cut_meat, checked: @lunch_card.cut_meat? %> Geschnittenes Fleisch</td>
                 
-                <td><%= f.check_box :no_fish, checked: @lunch_card.no_fish? %> Kein Fisch</td>
+                
               </tr>
               <tr>
-                <td><%= f.check_box :day_soup, checked: @lunch_card.day_soup? %> Tagessuppe</td>
+                
               </tr>
             </tbody>
           </table>

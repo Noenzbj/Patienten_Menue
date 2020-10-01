@@ -1,11 +1,6 @@
 class BreakfastCardsController < ApplicationController
   before_action :set_breakfast_card, only: [:show, :edit, :update, :destroy]
 
-  # GET /breakfast_cards
-  # GET /breakfast_cards.json
-  def index
-    @breakfast_cards = BreakfastCard.all
-  end
 
   # GET /breakfast_cards/1
   # GET /breakfast_cards/1.json

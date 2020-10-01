@@ -14,14 +14,13 @@
       
     </div>
 
-
 </div>
   <%station = 0
     7.times do
       station += 1
   %>
   <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
-  <h4 id="list-item-<%=station%>">Station <%= station %></h4>
+  <h4 id="list-item-<%=station%>", class="text-center">Station <%= station %></h4>
     <table class="table">
       <thead class="thead-light">
       <tr>
@@ -31,6 +30,7 @@
         <th scope="col">Raum</th>
         <th scope="col">Speisesaal</th>
         <th scope="col">Tisch-Platz-Nr.</th>
+        <th scope="col">Essenskarten</th>
         <th scope="col">Aktion</th>
         
       </tr>
@@ -45,9 +45,23 @@
             <td><%= patient.dining_room %></td>
             <td><%= patient.table_number %></td>
             <td>
-              <%= link_to "Ansehen", patient_path(patient),class: "btn btn-outline-warning" %>
-              <%= link_to "Bearbeiten", edit_patient_path(patient), class: "btn btn-outline-warning" %>
-              <%= link_to "Löschen", patient_path(patient), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+              <% if BreakfastCard.where(:patient_id => patient.id).first %>
+                <%= link_to "F", breakfast_card_path(BreakfastCard.where(:patient_id => patient.id).first), class:"btn btn-success btn-sm" %>
+              <% else %>
+                <%= link_to "F!", new_breakfast_card_path(:patient_id => patient.id), class:"btn btn-danger btn-sm" %>
+              <% end %> 
+              <% if LunchCard.where(:patient_id => patient.id).first %>
+                <%= link_to "M", lunch_card_path(LunchCard.where(:patient_id => patient.id).first), class:"btn btn-success btn-sm" %>
+                <%= link_to "A", '#', class:"btn btn-secondary btn-sm" %>
+            <%else %>
+                <%= link_to "M!", new_lunch_card_path(:patient_id => patient.id), class:"btn btn-danger btn-sm"  %>
+              <% end %>
+
+            </td>
+            <td>
+              <%= link_to "Ansehen", patient_path(patient),class: "btn bg-bdh text-white " %>
+              <%= link_to "Bearbeiten", edit_patient_path(patient), class: "btn bg-bdh text-white " %>
+              <%= link_to "Löschen", patient_path(patient), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
             </td>
           </tr>
         <%end%>  

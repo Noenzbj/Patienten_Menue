@@ -61,7 +61,12 @@
             </div>
             <div class="row mb-2 mt-2">
               <div class="col">
-                Bemerkungen: <%= truncate(@breakfast_card.comments, length: 100) %>
+                <% if @breakfast_card.comments == "" %>
+                  Es wurden keine Bemerkungen eingetragen!
+                <% else %>
+                  Bemerkungen: <%= truncate(@breakfast_card.comments, length: 100) %>
+                <% end %>
+                
               </div>
             </div>
           </div>
@@ -72,8 +77,8 @@
 
           
 
-          <%= link_to "Bearbeiten",edit_breakfast_card_path(@breakfast_card, :patient_id => @breakfast_card.patient_id), class: "btn btn-outline-warning" %>
-          <%= link_to "Löschen", breakfast_card_path(@breakfast_card), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          <%= link_to "Bearbeiten",edit_breakfast_card_path(@breakfast_card, :patient_id => @breakfast_card.patient_id), class: "btn bg-bdh text-white " %>
+          <%= link_to "Löschen", breakfast_card_path(@breakfast_card), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
 
           
         </div>

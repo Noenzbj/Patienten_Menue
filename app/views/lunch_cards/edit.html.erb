@@ -1,5 +1,11 @@
 <div class="container mt-1 mb-3 text-center">
   <h1>Vollkost Mittagskarte aktualisieren</h1>
-  
+  <% if params[:patient_id]%>
+  <h2>
+    für <%=link_to Patient.find(@patient_id.id).first_name + " " + Patient.find(@patient_id.id).last_name, patient_path(@patient_id.id)%>
+    <%="auf der Station:" + Patient.find(@patient_id.id).station%>
+    <%= " Zimmer: " + Patient.find(@patient_id.id).room_nr %>
+  </h2>
+<% end %>
   </div>
 <%= render 'form' %>
