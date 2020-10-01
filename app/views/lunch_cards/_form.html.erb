@@ -3,60 +3,59 @@
   <div class = "row justify-content-center ">
     <div class = "col-10">
       <%= render  "shared/errors",obj: @lunch_card %>
+
       <%= form_with(model: @lunch_card, class: "shadow p-3 mb-3 background rounded", local: true) do |f| %>
-      
       <div class="form-group row justify-content-center">
-        
         <div class="col-10 justify-content-center">
-           
-            <table class="table table-borderless ">
-              <tbody>
-                <tr>
-                  <td><div class="form-check">
+          <%= f.hidden_field :patient_id, :value => @patient_id.id%>
+          <table class="table table-borderless ">
+            <tbody>
+              <tr>
+                <td>
+                  <div class="form-check">
                     <%= f.radio_button :portion, "Normale Portion", class: "form-check-input"%>
                     <label class="form-check-label" >
                       Normale Portion
                     </label>
-                  </div></td>
-                  <td><%= f.check_box :pureed_food, checked: @lunch_card.pureed_food?%> Passierte Kost</td>
-                  
-                  <td><%= f.check_box :vegetarian, checked: @lunch_card.vegetarian? %> Vegetarisch</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <%= f.radio_button :portion, "Kleine Portion", class: "form-check-input"%>
-                      <label class="form-check-label">
-                        Kleine Portion
-                      </label>
-                    </div>
-                  </td> 
-                  <td><%= f.check_box :pureed_meat, checked: @lunch_card.pureed_meat? %> Passiertes Fleisch</td>
-                  <td><%= f.check_box :no_pork, checked: @lunch_card.no_pork? %> Kein Schweinefleisch</td>
-                  
-                </tr>
-                <tr>
-                  <td><%= f.check_box :dessert, checked: @lunch_card.dessert? %> Dessert</td>
-                  <td><%= f.check_box :cut_meat, checked: @lunch_card.cut_meat? %> Geschnittenes Fleisch</td>
-                  
-                  <td><%= f.check_box :no_fish, checked: @lunch_card.no_fish? %> Kein Fisch</td>
-                </tr>
-                <tr>
-                  <td><%= f.check_box :day_soup, checked: @lunch_card.day_soup? %> Tagessuppe</td>
-                </tr>
-              </tbody>
-            </table>
-          
+                  </div>
+                </td>
+                <td><%= f.check_box :pureed_food, checked: @lunch_card.pureed_food?%> Passierte Kost</td>
+                <td><%= f.check_box :vegetarian, checked: @lunch_card.vegetarian? %> Vegetarisch</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-check">
+                    <%= f.radio_button :portion, "Kleine Portion", class: "form-check-input"%>
+                    <label class="form-check-label">
+                      Kleine Portion
+                    </label>
+                  </div>
+                </td> 
+                <td><%= f.check_box :pureed_meat, checked: @lunch_card.pureed_meat? %> Passiertes Fleisch</td>
+                <td><%= f.check_box :no_pork, checked: @lunch_card.no_pork? %> Kein Schweinefleisch</td>
+              </tr>
+              <tr>
+                <td><%= f.check_box :dessert, checked: @lunch_card.dessert? %> Dessert</td>
+                <td><%= f.check_box :cut_meat, checked: @lunch_card.cut_meat? %> Geschnittenes Fleisch</td>
+                
+                <td><%= f.check_box :no_fish, checked: @lunch_card.no_fish? %> Kein Fisch</td>
+              </tr>
+              <tr>
+                <td><%= f.check_box :day_soup, checked: @lunch_card.day_soup? %> Tagessuppe</td>
+              </tr>
+            </tbody>
+          </table>
+            
         </div>
       </div>
-
+      
       <div class="form-group row justify-content-center">
-        
         <div class="col-10">
           <%= f.text_area :comments, rows: 10, class: "form-control shadow rounded", placeholder: "Bitte hier ihre Bemerkungen eintragen!" %>
         </div>
       </div>
-
+      
+        
         <div class="form-group row justify-content-center">
           <%= f.submit(@lunch_card.new_record? ? "Erstellen" : "Aktualisieren", class: "btn btn-secondary") %>
         </div>

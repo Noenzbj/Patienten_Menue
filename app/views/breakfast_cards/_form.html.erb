@@ -1,0 +1,74 @@
+<div class="container mt-1">
+  <div class = "row justify-content-center ">
+    <div class = "col-10">
+      <%= render  "shared/errors",obj: @breakfast_card %>
+
+      <%= form_with(model: @breakfast_card, class: "shadow p-3 mb-3 background rounded", local: true) do |f| %>
+      <div class="form-group row justify-content-center">
+        <div class="col-10 justify-content-center">
+          <% if params[:patient_id] %>
+            <%= f.hidden_field :patient_id, :value => @patient_id.id%>
+          <% else %>
+            <%= f.hidden_field :patient_id, :value => @breakfast_card.patient_id%>
+          <% end %>
+          
+          <table class="table table-bordered ">
+            <tbody>
+              <tr>
+                <td><%= f.check_box :coffee, checked: @breakfast_card.coffee?%> Kaffee</td>
+                <td><%= f.check_box :porridge, checked: @breakfast_card.porridge? %> Brei (morgens)</td>
+                <td><%= f.check_box :cold_cuts, checked: @breakfast_card.cold_cuts? %> Wurst</td>
+                <td><%= f.select :bread_bun, options_for_select(["0","1","2","3"], @breakfast_card.bread_bun), class: "form form-group form-control shadow"%> Brötchen</td>
+              </tr>
+              <tr> 
+                <td><%= f.check_box :tea, checked: @breakfast_card.tea? %> Tee</td>
+                <td><%= f.check_box :muesli, checked: @breakfast_card.muesli? %> Müsli</td>
+                <td><%= f.check_box :cut_cheese, checked: @breakfast_card.cut_cheese? %> Schnittkäse</td>
+                <td><%= f.select :multigrain_bun, options_for_select(["0","1","2","3"], @breakfast_card.multigrain_bun), class: "form form-group form-control shadow"%> Mehrkornbrötchen</td>
+              </tr>
+              <tr>
+                <td><%= f.check_box :milk, checked: @breakfast_card.milk? %> Milch</td>
+                <td><%= f.check_box :quark, checked: @breakfast_card.quark? %> Quark</td>
+                <td><%= f.check_box :cheese_spread, checked: @breakfast_card.cheese_spread? %> Streichkäse</td>
+                <td><%= f.select :greybread, options_for_select(["0","1","2","3"], @breakfast_card.greybread), class: "form form-group form-control shadow"%> Graubrot</td>
+              </tr>
+              <tr>
+                <td><%= f.check_box :cocoa, checked: @breakfast_card.cocoa? %> Kakao</td>
+                <td><%= f.check_box :butter, checked: @breakfast_card.butter? %> Butter</td>
+                <td><%= f.check_box :honey, checked: @breakfast_card.honey? %> Honig</td>
+                <td><%= f.select :whitebread, options_for_select(["0","1","2","3"], @breakfast_card.whitebread), class: "form form-group form-control shadow"%> Weissbrot</td>
+
+              </tr>
+              <tr>
+                <td><%= f.check_box :hot, checked: @breakfast_card.hot? %> heiß</td>
+                <td><%= f.check_box :becel, checked: @breakfast_card.becel? %> BECEL</td>
+                <td><%= f.check_box :nougat_creme, checked: @breakfast_card.nougat_creme? %> Nougat Creme</td>
+                <td><%= f.select :three_grain_bread, options_for_select(["0","1","2","3"], @breakfast_card.three_grain_bread), class: "form form-group form-control shadow"%> Dreikornbrot</td>
+
+              </tr>
+              <tr>
+                <td><%= f.check_box :cold, checked: @breakfast_card.cold? %> kalt</td>
+                <td><%= f.check_box :jam, checked: @breakfast_card.jam? %> Marmelade</td>
+                <td><%= f.check_box :egg, checked: @breakfast_card.egg? %> Ei (Di./So.)</td>
+                <td><%= f.select :crispbread, options_for_select(["0","1","2","3"], @breakfast_card.crispbread), class: "form form-group form-control shadow"%> Knäcke</td>
+              </tr>
+            </tbody>
+          </table>
+            
+        </div>
+      </div>
+      
+      <div class="form-group row justify-content-center">
+        <div class="col-10">
+          <%= f.text_area :comments, rows: 10, class: "form-control shadow rounded", placeholder: "Bitte hier ihre Bemerkungen eintragen!" %>
+        </div>
+      </div>
+      
+        
+        <div class="form-group row justify-content-center">
+          <%= f.submit(@breakfast_card.new_record? ? "Erstellen" : "Aktualisieren", class: "btn btn-secondary") %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

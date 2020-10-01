@@ -1,0 +1,2 @@
+module BreakfastCardsHelper
+end

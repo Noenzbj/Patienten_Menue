@@ -9,7 +9,7 @@
               <p>Zimmer: <%= @lunch_card.patient.room_nr %></p>
             </div>
             <div class="col">
-              für <%= link_to @lunch_card.patient.first_name + " " + @lunch_card.patient.last_name , '#' %>
+              für <%= link_to @lunch_card.patient.first_name + " " + @lunch_card.patient.last_name , patient_path(@lunch_card.patient.id) %>
             </div>
             <div class="col">
               <p>Speisesaal: <%= @lunch_card.patient.dining_room%></p>
@@ -35,8 +35,8 @@
 
           <p class="card-text">Bemerkungen: <%= truncate(@lunch_card.comments, length: 100) %></p>
 
-          <%= link_to "Edit",edit_lunch_card_path(@lunch_card), class: "btn btn-outline-info" %>
-          <%= link_to "Delete", '#', class: "btn btn-outline-danger", data: {confirm: "Are you sure?"} %>
+          <%= link_to "Bearbeiten",edit_lunch_card_path(@lunch_card, :patient_id => @lunch_card.patient_id), class: "btn btn-outline-warning" %>
+          <%= link_to "Löschen", lunch_card_path(@lunch_card), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
 
           
         </div>

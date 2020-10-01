@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+          <div class="row">
+            <div class="col">
+              <p>Station: <%= @breakfast_card.patient.station%></p>
+              <p>Zimmer: <%= @breakfast_card.patient.room_nr %></p>
+            </div>
+            <div class="col">
+              für <%= link_to @breakfast_card.patient.first_name + " " + @breakfast_card.patient.last_name , patient_path(@breakfast_card.patient.id) %>
+            </div>
+            <div class="col">
+              <p>Speisesaal: <%= @breakfast_card.patient.dining_room%></p>
+              <p>Tisch-Platz-Nummer: <%= @breakfast_card.patient.table_number%></p>
+            </div>
+          </div>
+          
+
+          
+          
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-black font-weight-bold">Vollkost, Frühstück</h5>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p></p>
+                <p><%= "Kaffee" if @breakfast_card.coffee == true%></p>
+                <p><%= "Tee" if @breakfast_card.tea == true%></p>
+                <p><%= "Milch" if @breakfast_card.milk == true%></p>
+                <p><%= "Kakao" if @breakfast_card.cocoa == true%></p>
+                <p><%= "heiß" if @breakfast_card.hot == true%></p>
+                <p><%= "kalt" if @breakfast_card.cold == true%></p>
+              </div>
+              <div class="col">
+                <p></p>
+                <p><%= "Brei (morgens)" if @breakfast_card.porridge == true%></p>
+                <p><%= "Müsli" if @breakfast_card.muesli == true%></p>
+                <p><%= "Quark" if @breakfast_card.quark == true%></p>
+                <p><%= "Nougat Creme" if @breakfast_card.nougat_creme == true%></p>
+                <p><%= @breakfast_card.bread_bun.to_s + " Brötchen" if @breakfast_card.bread_bun > 0 %></p>
+                <p><%= @breakfast_card.multigrain_bun.to_s + " Mehrkornbrötchen" if @breakfast_card.multigrain_bun > 0 %></p>
+                <p><%= @breakfast_card.greybread.to_s + " Graubrot" if @breakfast_card.greybread > 0 %></p>
+                <p><%= @breakfast_card.whitebread.to_s + " Weissbrot" if @breakfast_card.whitebread > 0 %></p>
+                <p><%= @breakfast_card.three_grain_bread.to_s + " Dreikornbrot" if @breakfast_card.three_grain_bread > 0 %></p>
+                <p><%= @breakfast_card.crispbread.to_s + " Knäcke" if @breakfast_card.crispbread > 0 %></p>      
+              </div>
+              <div class="col">
+                <p></p>
+                <p><%= "Butter" if @breakfast_card.butter == true%></p>
+                <p><%= "BECEL" if @breakfast_card.becel == true%></p>
+                <p><%= "Wurst" if @breakfast_card.cold_cuts == true%></p>
+                <p><%= "Schnittkäse" if @breakfast_card.cut_cheese == true%></p>
+                <p><%= "Streichkäse" if @breakfast_card.cheese_spread == true%></p>
+                <p><%= "Marmelade" if @breakfast_card.jam == true%></p>
+                <p><%= "Honig" if @breakfast_card.honey == true%></p>
+                <p><%= "Ei (Di./So.)" if @breakfast_card.egg == true%></p>
+              </div>
+            </div>
+            <div class="row mb-2 mt-2">
+              <div class="col">
+                Bemerkungen: <%= truncate(@breakfast_card.comments, length: 100) %>
+              </div>
+            </div>
+          </div>
+          
+         
+
+
+
+          
+
+          <%= link_to "Bearbeiten",edit_breakfast_card_path(@breakfast_card, :patient_id => @breakfast_card.patient_id), class: "btn btn-outline-warning" %>
+          <%= link_to "Löschen", breakfast_card_path(@breakfast_card), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+
+          
+        </div>
+        <div class="card-footer text-muted">
+          <small>Essenskarte erstellt am: <%= @breakfast_card.created_at %>, 
+          zuletzt aktualisiert am: <%= @breakfast_card.updated_at%></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
