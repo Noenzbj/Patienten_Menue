@@ -1,6 +1,55 @@
-<h3>Search Result</h3>  
+<h1 class="text-center">Suchergebnisse</h1>  
 
-    <% @results.each do |result| %>  
-        <%= result.first_name %><br>
-        <%= result.last_name %>  
-    <% end %>
+    <% @patient.each do |result| %>  
+    <div id="page-content">
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <div class="col-8 mt-4">
+    <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic border-bottom-1">
+          erstellt von <%= '#' %>
+         
+        </div>
+        <div class="card-body ">
+          <h4 class="card-title text-center"><%= result.first_name + " " + result.last_name%></h4>
+          <div class="row">
+            <div class="col">
+              <p>Station: <%= result.station%></p>
+              <p>Zimmer: <%= result.room_nr %></p>
+            </div>
+            <div class="col">
+              <p>Speisesaal: <%= result.dining_room%></p>
+              <p>Tisch-Platz-Nummer: <%= result.table_number%></p>
+            </div>
+          </div>
+          <div class="container mb-3">
+            <% if BreakfastCard.where(:patient_id => result.id).first %>
+              <%= link_to "Frühstückskarte", breakfast_card_path(BreakfastCard.where(:patient_id => result.id).first), class:"btn btn-success btn-sm" %>
+            <% else %>
+              <%= link_to "Frühstückskarte erstellen!", new_breakfast_card_path(:patient_id => result.id), class:"btn btn-danger btn-sm" %>
+            <% end %>
+            <% if LunchCard.where(:patient_id => result.id).first %>
+              <%= link_to "Mittagskarte", lunch_card_path(LunchCard.where(:patient_id => result.id).first), class:"btn btn-success btn-sm" %>
+              <%= link_to "Abendkarte", '#', class:"btn btn-secondary btn-sm" %>
+            <%else %>
+              <%= link_to "Mittagskarte erstellen!", new_lunch_card_path(:patient_id => result.id), class:"btn btn-danger btn-sm"  %>
+            <% end %>
+          </div>
+
+          
+         
+          <%= link_to "Bearbeiten", edit_patient_path(result), class: "btn bg-bdh text-white " %>
+          <%= link_to "Löschen", patient_path(result), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          
+        </div>
+        <div class="card-footer text-muted">
+          <small>erstellt am <%= result.created_at %>, 
+          zuletzt bearbeitet am <%= result.updated_at %></small>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+</div> 
+<% end %>

@@ -7,14 +7,19 @@ class PatientsController < ApplicationController
 
   def index
       @patients=Patient.all
+      
   end
 
   def search  
+    @parameter = params[:search].downcase
     if params[:search].blank?  
-      redirect_to(root_path, alert: "Empty field!") and return  
-    else  
-      @parameter = params[:search].downcase  
-      @results = Patient.all.where("lower(first_name) LIKE :search", search: @parameter) 
+      redirect_to(root_path, alert: "Bitte geben Sie einen Namen ein!") and return 
+      
+    elsif Patient.all.where("lower(last_name) LIKE :search", search: @parameter).empty?
+      redirect_to(patients_path(), alert: "Patient nicht gefunden!") and return
+    else 
+      @patient = Patient.all.where("lower(last_name) LIKE :search", search: @parameter) 
+      
     end  
   end
   
