@@ -20,8 +20,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: "pmdbuser"
-  password: <%= Rails.application.credentials.finance_tracker_pg[:db_user_pw] %>
+  username: "postgres"
+  password: <%= Rails.application.credentials.finance_tracker_pg[:postgres_pw] %>
 
 development:
   <<: *default
