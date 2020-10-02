@@ -1,9 +1,11 @@
 <div class="container mt-1 mb-3 text-center">
   <h1>Vollkost Frühstückskarte</h1>
   <% if params[:patient_id] %>
-  <h4>für <%=Patient.find(@patient_id.id).first_name + " " + Patient.find(@patient_id.id).last_name + " auf der Station: " + Patient.find(@patient_id.id).station%>
+  <h2>
+    für <%=link_to Patient.find(@patient_id.id).first_name + " " + Patient.find(@patient_id.id).last_name, patient_path(@patient_id.id)%>
+    <%="auf der Station:" + Patient.find(@patient_id.id).station%>
     <%= " Zimmer: " + Patient.find(@patient_id.id).room_nr %>
-  </h4>
+  </h2>
   <% end %> 
 
 </div>

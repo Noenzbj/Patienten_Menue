@@ -9,6 +9,15 @@ class PatientsController < ApplicationController
       @patients=Patient.all
   end
 
+  def search  
+    if params[:search].blank?  
+      redirect_to(root_path, alert: "Empty field!") and return  
+    else  
+      @parameter = params[:search].downcase  
+      @results = Patient.all.where("lower(first_name) LIKE :search", search: @parameter) 
+    end  
+  end
+  
   def new
       @patient = Patient.new
   end

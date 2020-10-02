@@ -26,23 +26,25 @@
           <p class="card-text"><%= @lunch_card.portion%></p>
           <p class="card-text"><%= "Tagessuppe" if @lunch_card.day_soup == true%></p>
           <p class="card-text"><%= "Dessert" if @lunch_card.dessert == true%></p>
-          <p class="card-text font-weight-bold"><%= "Passierte Kost" if @lunch_card.pureed_food == true%></p>
-          <p class="card-text font-weight-bold"><%= "Passiertes Fleisch" if @lunch_card.pureed_meat == true%></p>
-          <p class="card-text"><%= "Geschnittenes Fleisch" if @lunch_card.cut_meat == true%></p>
-          <p class="card-text"><%= "Kein Schweinefleisch" if @lunch_card.no_pork == true%></p>
-          <p class="card-text"><%= "Vegetarisch" if @lunch_card.vegetarian == true%></p>
-          <p class="card-text"><%= "Kein Fisch" if @lunch_card.no_fish == true%></p>
 
-          <p class="card-text">Bemerkungen: <%= truncate(@lunch_card.comments, length: 100) %></p>
+          <div class="row mb-2 mt-2">
+            <div class="col">
+              <% if @lunch_card.comments == "" %>
+                Es wurden keine Bemerkungen eingetragen!
+              <% else %>
+                Bemerkungen: <%= truncate(@lunch_card.comments, length: 100) %>
+              <% end %>
+            </div>
+          </div>
 
-          <%= link_to "Bearbeiten",edit_lunch_card_path(@lunch_card, :patient_id => @lunch_card.patient_id), class: "btn btn-outline-warning" %>
-          <%= link_to "Löschen", lunch_card_path(@lunch_card), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          <%= link_to "Bearbeiten",edit_lunch_card_path(@lunch_card, :patient_id => @lunch_card.patient_id), class: "btn bg-bdh text-white " %>
+          <%= link_to "Löschen", lunch_card_path(@lunch_card), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
 
           
         </div>
         <div class="card-footer text-muted">
-          <small>Created <%= time_ago_in_words(@lunch_card.created_at) %> ago, 
-          edited <%= time_ago_in_words(@lunch_card.updated_at) %> ago</small>
+          <small>Essenskarte erstellt am: <%= @lunch_card.created_at %>, 
+          zuletzt aktualisiert am: <%= @lunch_card.updated_at%></small>
         </div>
       </div>
     </div>
