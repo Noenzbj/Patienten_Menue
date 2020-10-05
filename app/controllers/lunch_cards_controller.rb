@@ -13,7 +13,7 @@ class LunchCardsController < ApplicationController
     if params[:patient_id]
       @patient_id = Patient.find(params[:patient_id])
     end
-    @lunch_card = LunchCard.new()
+      @lunch_card = LunchCard.new()
     
   end
 

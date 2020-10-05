@@ -46,7 +46,7 @@ class PatientsController < ApplicationController
       @patient = Patient.new(params.require(:patient).permit(:first_name, :last_name, :station, :room_nr, :dining_room, :table_number))
       if @patient.save
         flash[:notice] = "Patient wurde angelegt"
-        redirect_to @patient
+        redirect_to new_diet_path(:patient_id => @patient.id)
       else
         render "new"
       end

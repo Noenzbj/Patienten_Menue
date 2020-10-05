@@ -1,0 +1,56 @@
+<div class="container mt-1">
+  <div class = "row justify-content-center ">
+    <div class = "col-10">
+      <%= render  "shared/errors",obj: @diet %>
+
+      <%= form_with(model: @diet, class: "shadow p-3 mb-3 background rounded", local: true) do |f| %>
+      <div class="form-group row justify-content-center">
+        <div class="col-10 justify-content-center">
+          <% if params[:patient_id] %>
+            <%= f.hidden_field :patient_id, :value => @patient_id.id%>
+          <% else %>
+            <%= f.hidden_field :patient_id, :value => @diet.patient_id%>
+          <% end %>
+          
+          <table class="table table-bordered ">
+            <tbody>
+              <tr>
+                <td><%= f.check_box :dysphagia, checked: @diet.dysphagia?%> Dysphagie</td>
+                <td><%= f.check_box :reduction_diet, checked: @diet.reduction_diet? %> Reduktion in KCAL</td>
+                <td><%= f.check_box :light_food, checked: @diet.light_food? %> Schonkost</td>
+                <td><%= f.check_box :low_cholesterol, checked: @diet.low_cholesterol? %> Cholesterinarm</td>
+              </tr>
+              <tr> 
+                <td><%= f.check_box :pureed_meat, checked: @diet.pureed_meat? %> Passiertes Fleisch</td>
+                <td><%= f.check_box :bile_liver, checked: @diet.bile_liver? %> Galle - Leber</td>
+                <td><%= f.check_box :no_pork, checked: @diet.no_pork? %> Kein Schweinefleisch</td>
+              </tr>
+              <tr>
+                <td><%= f.check_box :low_purine, checked: @diet.low_purine? %> Purinarm</td>
+                <td><%= f.check_box :cut_meat, checked: @diet.cut_meat? %> Geschnittenes Fleisch</td>
+                <td><%= f.check_box :diabetes, checked: @diet.diabetes? %> Diabetes</td>
+                <td><%= f.check_box :vegetarian, checked: @diet.vegetarian? %> Vegetarian</td>
+              </tr>
+              <tr>
+                <td><%= f.check_box :pureed_food, checked: @diet.pureed_food? %> Passierte Kost</td>
+                <td><%= f.check_box :no_fish, checked: @diet.no_fish? %> Kein Fisch</td>
+                <td><%= f.check_box :nail_board, checked: @diet.nail_board? %> Nagelbrett</td>
+                <td><%= f.check_box :big_cup, checked: @diet.big_cup? %> grosse Tasse</td>
+              </tr>
+            </tbody>
+          </table>
+            
+        </div>
+      </div>
+      
+      <div class="form-group row justify-content-center">
+      </div>
+      
+        
+        <div class="form-group row justify-content-center">
+          <%= f.submit(@diet.new_record? ? "Erstellen" : "Aktualisieren", class: "btn btn-secondary") %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

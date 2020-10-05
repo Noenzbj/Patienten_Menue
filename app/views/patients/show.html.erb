@@ -31,6 +31,11 @@
               <%else %>
                 <%= link_to "Mittagskarte erstellen!", new_lunch_card_path(:patient_id => @patient.id), class:"btn btn-danger btn-sm"  %>
               <% end %>
+              <% if Diet.where(:patient_id => @patient.id).first %>
+                <%= link_to "Diätsform", diet_path(Diet.where(:patient_id => @patient.id).first), class:"btn btn-success btn-sm" %>
+              <% else %>
+                <%= link_to "Diätsform eintragen!", new_diet_path(:patient_id => @patient.id), class:"btn btn-danger btn-sm"  %>
+              <% end %>
             </div>
 
             

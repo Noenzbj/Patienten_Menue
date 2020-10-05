@@ -1,2 +1,62 @@
-<h1>Diets#show</h1>
-<p>Find me in app/views/diets/show.html.erb</p>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+          <div class="row">
+            <div class="col">
+              <p>Station: <%= @diet.patient.station%></p>
+              <p>Zimmer: <%= @diet.patient.room_nr %></p>
+            </div>
+            <div class="col">
+              für <%= link_to @diet.patient.first_name + " " + @diet.patient.last_name , patient_path(@diet.patient.id) %>
+            </div>
+            <div class="col">
+              <p>Speisesaal: <%= @diet.patient.dining_room%></p>
+              <p>Tisch-Platz-Nummer: <%= @diet.patient.table_number%></p>
+            </div>
+          </div>
+          
+
+          
+          
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-black font-weight-bold">Diätform</h5>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p></p>
+                <p class="font-weight-bold text-danger"><%= " Patient hat eine Dysphagie" if @diet.dysphagia == true%></p>
+
+              </div>
+              <div class="col">
+                <p></p>
+                
+
+              </div>
+              <div class="col">
+                <p></p>
+                
+
+              </div>
+            </div>
+          </div>
+          
+         
+
+
+
+          
+
+          <%= link_to "Bearbeiten",edit_diet_path(@diet, :patient_id => @diet.patient_id), class: "btn bg-bdh text-white " %>
+          <%= link_to "Löschen", diet_path(@diet), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+
+          
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
