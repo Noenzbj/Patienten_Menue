@@ -19,9 +19,9 @@
         </div>
       </li>
     </ul>
-    <%= form_tag(search_page_path(), :method => 'get', class: 'form-inline my-2 my-lg-0') do %>
+    <%= form_tag(patients_path(), :method => 'get', class: 'form-inline my-2 my-lg-0') do %>
     <%= search_field_tag :search, params[:search], placeholder: "Suche", class: "form-control mr-sm-2" %>
-    <%= button_tag "Suche", class: 'btn btn-outline-success my-2 my-sm-0', :first_name => nil%>
+    <%= button_tag "Suche", class: 'btn btn-outline-success my-2 my-sm-0', :last_name => nil%>
   <% end %>
   </div>
 

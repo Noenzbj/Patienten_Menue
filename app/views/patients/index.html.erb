@@ -36,7 +36,7 @@
       </tr>
       </thead>
       <tbody>
-        <%Patient.where(station: station).find_each do |patient|%>
+        <%@patients.where(station: station).find_each do |patient|%>
           <tr>
             <td><%= patient.first_name %></td>
             <td><%= patient.last_name %></td>
@@ -69,5 +69,4 @@
     </table>
     </div>
   <%end%>
-
 </div> 

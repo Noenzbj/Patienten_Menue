@@ -6,20 +6,30 @@ class PatientsController < ApplicationController
   
 
   def index
-      @patients=Patient.all
       
+    if params[:search].nil?
+      @patients=Patient.all
+    else
+      @parameter = params[:search].downcase 
+      if params[:search].blank?
+        redirect_to(patients_path(), alert: "Bitte geben Sie einen Namen ein!") and return 
+      elsif Patient.all.where("LOWER(first_name || \' \' || last_name || \' \' || room_nr) LIKE :search", search: "%#{@parameter}%").empty?
+        redirect_to(patients_path(), alert: "Patient nicht gefunden!") and return
+      else 
+        @patients = Patient.all.where("LOWER(first_name || \' \' || last_name || \' \' || room_nr) LIKE :search", search: "%#{@parameter}%") 
+      end
+    end      
   end
 
   def search  
     @parameter = params[:search].downcase
     if params[:search].blank?  
-      redirect_to(root_path, alert: "Bitte geben Sie einen Namen ein!") and return 
+      redirect_to(patients_path(), alert: "Bitte geben Sie einen Namen ein!") and return 
       
-    elsif Patient.all.where("lower(last_name) LIKE :search", search: @parameter).empty?
+    elsif Patient.all.where("lower(last_name) LIKE :search", search: "%#{@parameter}%").empty?
       redirect_to(patients_path(), alert: "Patient nicht gefunden!") and return
     else 
-      @patient = Patient.all.where("lower(last_name) LIKE :search", search: @parameter) 
-      
+      @patient = Patient.all.where("lower(last_name) LIKE :search", search: "%#{@parameter}%") 
     end  
   end
   
