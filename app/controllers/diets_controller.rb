@@ -13,6 +13,21 @@ class DietsController < ApplicationController
     
   end
 
+  def edit
+    if params[:patient_id]
+      @patient_id = Patient.find(params[:patient_id])
+    end
+  end
+
+  def update
+    if @diet.update(diet_params)
+      flash[:notice] = "Erfolgreich aktualisiert!"
+      redirect_to @diet
+    else
+      render "edit"
+    end
+  end
+
   def create
     @diet = Diet.new(diet_params)
     if @diet.save

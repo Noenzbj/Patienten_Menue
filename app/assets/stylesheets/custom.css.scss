@@ -55,3 +55,22 @@ h4, .h4Editor {
     padding: 0;
     margin: 0 0 10px 0;
 }
+
+
+/* Sticky Footer Classes */
+html, body {
+    height: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+#page-content {
+  flex: 1 0 auto;
+  
+}
+
+#sticky-footer {
+  flex-shrink: 0;
+}

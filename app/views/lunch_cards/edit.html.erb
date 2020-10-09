@@ -3,7 +3,7 @@
   <% if params[:patient_id]%>
   <h2>
     für <%=link_to Patient.find(@patient_id.id).first_name + " " + Patient.find(@patient_id.id).last_name, patient_path(@patient_id.id)%>
-    <%="auf der Station:" + Patient.find(@patient_id.id).station%>
+    <%="auf der Station: " + Patient.find(@patient_id.id).station%>
     <%= " Zimmer: " + Patient.find(@patient_id.id).room_nr %>
   </h2>
 <% end %>
